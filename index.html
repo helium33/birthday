@@ -134,6 +134,24 @@
       text-transform: uppercase;
       color: var(--muted);
     }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .music-btn {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      display: grid; place-items: center;
+      transition: box-shadow .3s, background .3s, opacity .3s;
+    }
+    .music-btn.playing {
+      background: linear-gradient(135deg, var(--pink), var(--magenta));
+      box-shadow: 0 0 14px rgba(255, 63, 164, .7);
+      animation: spin 4s linear infinite;
+    }
+    .music-btn.unavailable { display: none; }
     .progress { display: flex; gap: 6px; }
     .progress span {
       width: 18px; height: 4px; border-radius: 4px;
@@ -581,10 +599,15 @@
   <main class="app" role="main">
     <div class="topbar">
       <span>For mee ♡</span>
-      <div class="progress" id="progress" aria-hidden="true">
-        <span class="on"></span><span></span><span></span><span></span><span></span>
+      <div class="topbar-right">
+        <div class="progress" id="progress" aria-hidden="true">
+          <span class="on"></span><span></span><span></span><span></span><span></span>
+        </div>
+        <button class="music-btn" id="musicBtn" aria-label="Play music" title="Somebody To You – The Vamps">♪</button>
       </div>
     </div>
+    <!-- Background music: put your MP3 next to index.html and name it song.mp3 -->
+    <audio id="bgm" src="song.mp3" loop preload="auto"></audio>
 
     <div class="screens">
 
@@ -835,8 +858,45 @@
       track("step_view", { step: idx + 1, step_name: id });
     }
 
+    /* ================= Background music ================= */
+    var bgm = $("bgm");
+    var musicBtn = $("musicBtn");
+    var fadeTimer = null;
+
+    function setMusicUI(on) {
+      musicBtn.classList.toggle("playing", on);
+      musicBtn.textContent = on ? "♫" : "♪";
+      musicBtn.setAttribute("aria-label", on ? "Pause music" : "Play music");
+    }
+    function playMusic() {
+      clearInterval(fadeTimer);
+      bgm.volume = 0;
+      var p = bgm.play();
+      if (p && p.then) {
+        p.then(function () {
+          setMusicUI(true);
+          fadeTimer = setInterval(function () {
+            bgm.volume = Math.min(0.7, bgm.volume + 0.05);
+            if (bgm.volume >= 0.7) clearInterval(fadeTimer);
+          }, 120);
+        }).catch(function () { setMusicUI(false); });
+      }
+    }
+    function pauseMusic() {
+      clearInterval(fadeTimer);
+      bgm.pause();
+      setMusicUI(false);
+    }
+    bgm.addEventListener("error", function () { musicBtn.classList.add("unavailable"); });
+    musicBtn.addEventListener("click", function () {
+      if (bgm.paused) playMusic(); else pauseMusic();
+    });
+
     /* ================= Step 1 ================= */
-    $("btnStart").addEventListener("click", function () { goTo("s-cake"); });
+    $("btnStart").addEventListener("click", function () {
+      if (bgm.paused) playMusic(); // browsers only allow audio after a tap
+      goTo("s-cake");
+    });
 
     /* ================= Step 2 ================= */
     var cake = $("cake");
