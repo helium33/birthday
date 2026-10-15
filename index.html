@@ -541,9 +541,34 @@
       border: 1px solid rgba(255,255,255,.2);
       box-shadow: 0 16px 40px rgba(0,0,0,.45);
       transition: transform .45s cubic-bezier(.22,.61,.36,1), opacity .45s ease;
-      will-change: transform, opacity;
       backface-visibility: hidden;
+      transform-origin: 50% 100%; /* back cards peek out below the front one */
     }
+    .g-card.live { will-change: transform, opacity; }
+    .g-card.off { visibility: hidden; }
+    /* Darken cards waiting behind the front one (opacity-only, cheap to animate) */
+    .g-card::after {
+      content: "";
+      position: absolute; inset: 0; z-index: 3;
+      background: #12082a;
+      opacity: 0;
+      transition: opacity .45s ease;
+      pointer-events: none;
+    }
+    .g-card.back1::after { opacity: .45; }
+    .g-card.back2::after { opacity: .7; }
+    /* Two plain cards that always sit at the back, so the stack never looks empty near the end */
+    .g-ghost {
+      position: absolute;
+      left: 6%; right: 6%; top: 0; bottom: 30px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(160deg, #3a1766, #1b0b38);
+      transform-origin: 50% 100%;
+      pointer-events: none;
+    }
+    .g-ghost.g1 { transform: translate3d(0, 13px, 0) scale(.94); z-index: 2; opacity: .85; }
+    .g-ghost.g2 { transform: translate3d(0, 26px, 0) scale(.88); z-index: 1; opacity: .55; }
     .g-card .photo { position: absolute; inset: 0; }
     .g-card .cap {
       position: absolute; left: 0; right: 0; bottom: 0;
@@ -826,6 +851,7 @@
         }
       };
       img.src = src;
+      if (img.decode) img.decode().catch(function () {});
       wrap.appendChild(bg);
       wrap.appendChild(img);
       return wrap;
@@ -1060,6 +1086,13 @@
     var cards = [];
     var TOTAL = CAPTIONS.length;
 
+    ["g2", "g1"].forEach(function (cls) {
+      var g = document.createElement("div");
+      g.className = "g-ghost " + cls;
+      g.setAttribute("aria-hidden", "true");
+      stack.appendChild(g);
+    });
+
     CAPTIONS.forEach(function (text, i) {
       var card = document.createElement("div");
       card.className = "g-card";
@@ -1090,15 +1123,21 @@
           t = "translate3d(0, 0, 0) scale(1)";
           o = 1; z = 100;
         } else if (off <= 2) {
-          t = "translate3d(0, " + (off * 12) + "px, 0) scale(" + (1 - off * 0.05) + ")";
-          o = off === 1 ? 0.55 : 0.25; z = 100 - off;
+          t = "translate3d(0, " + (off * 13) + "px, 0) scale(" + (1 - off * 0.06) + ")";
+          o = 1; z = 100 - off;
         } else {
-          t = "translate3d(0, 24px, 0) scale(.9)";
+          t = "translate3d(0, 26px, 0) scale(.88)";
           o = 0; z = 100 - off;
         }
         c.style.transform = t;
         c.style.opacity = o;
         c.style.zIndex = z;
+        // Only the cards near the front stay rendered; the rest are hidden to keep phones fast
+        var near = off >= -1 && off <= 3;
+        c.classList.toggle("live", near);
+        c.classList.toggle("off", !near);
+        c.classList.toggle("back1", off === 1);
+        c.classList.toggle("back2", off === 2);
         c.style.pointerEvents = off === 0 ? "auto" : "none";
         c.setAttribute("aria-hidden", off === 0 ? "false" : "true");
       });
