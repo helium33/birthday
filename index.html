@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#140a2e" />
+  <title>Happy 25th Birthday, mee 💖</title>
+  <meta name="description" content="mee ရဲ့ အသက် ၂၅ နှစ်ပြည့် မွေးနေ့နဲ့ ၇ နှစ်ပြည့် အမှတ်တရ" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Noto+Sans+Myanmar:wght@400;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-1: #0b0620;
+      --bg-2: #1a0b3d;
+      --bg-3: #2a0f4f;
+      --pink: #ff3fa4;
+      --magenta: #e040fb;
+      --rose: #ff7eb6;
+      --gold: #ffd36e;
+      --text: #fff4fb;
+      --muted: rgba(255, 228, 245, 0.75);
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      --radius: 28px;
+      --font-my: "Noto Sans Myanmar", "Padauk", "Myanmar Text", "Pyidaungsu", sans-serif;
+      --font-latin: "Poppins", system-ui, sans-serif;
+      --font-script: "Dancing Script", cursive;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: var(--font-latin), var(--font-my);
+      color: var(--text);
+      background: radial-gradient(ellipse at top, var(--bg-3) 0%, var(--bg-2) 40%, var(--bg-1) 100%) fixed;
+      background-color: var(--bg-1);
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      padding-top: max(16px, env(safe-area-inset-top));
+      padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+
+    /* ---------- Background ambience ---------- */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .orb.o1 { width: 320px; height: 320px; background: #ff2d95; top: -80px; left: -100px; }
+    .orb.o2 { width: 360px; height: 360px; background: #6a2cff; bottom: -120px; right: -120px; animation-delay: -6s; }
+    .orb.o3 { width: 220px; height: 220px; background: #c03cff; top: 40%; left: 60%; opacity: 0.35; animation-delay: -12s; }
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(40px, 30px) scale(1.15); }
+    }
+
+    .stars, .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes twinkle { 0%,100% { opacity: .15; } 50% { opacity: 1; } }
+
+    .float-heart {
+      position: absolute;
+      bottom: -40px;
+      color: var(--pink);
+      text-shadow: 0 0 12px rgba(255, 63, 164, .8);
+      animation: rise linear forwards;
+      opacity: 0;
+    }
+    @keyframes rise {
+      0%   { transform: translateY(0) translateX(0) rotate(0); opacity: 0; }
+      10%  { opacity: .9; }
+      100% { transform: translateY(-110vh) translateX(var(--sway, 30px)) rotate(25deg); opacity: 0; }
+    }
+
+    /* ---------- App card ---------- */
+    .app {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 420px;
+      min-height: min(780px, calc(100dvh - 32px));
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(22px) saturate(140%);
+      -webkit-backdrop-filter: blur(22px) saturate(140%);
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, .55),
+        0 0 0 1px rgba(255, 63, 164, .08) inset,
+        0 0 60px rgba(255, 63, 164, .18);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .app::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(140deg, rgba(255,63,164,.7), transparent 35%, transparent 65%, rgba(224,64,251,.6));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px 0;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .progress { display: flex; gap: 6px; }
+    .progress span {
+      width: 18px; height: 4px; border-radius: 4px;
+      background: rgba(255,255,255,.18);
+      transition: background .4s, width .4s, box-shadow .4s;
+    }
+    .progress span.on {
+      width: 28px;
+      background: linear-gradient(90deg, var(--pink), var(--magenta));
+      box-shadow: 0 0 10px var(--pink);
+    }
+
+    .screens { position: relative; flex: 1; display: flex; }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 22px 28px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(24px) scale(.98);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1), visibility 0s linear .7s;
+    }
+    .screen.active {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      transition: opacity .7s ease .1s, transform .7s cubic-bezier(.2,.8,.2,1) .1s, visibility 0s;
+    }
+
+    .my { font-family: var(--font-my); line-height: 1.95; }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 6px;
+    }
+    .script {
+      font-family: var(--font-script);
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffd1ec, var(--pink), var(--magenta));
+      -webkit-background-clip: text;
+              background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 14px rgba(255, 63, 164, .55));
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      position: relative;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-my);
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--pink), var(--magenta));
+      box-shadow: 0 0 0 0 rgba(255,63,164,.6), 0 10px 30px rgba(255,63,164,.45);
+      transition: transform .2s ease, box-shadow .3s ease, opacity .3s;
+      line-height: 1.6;
+    }
+    .btn:active { transform: scale(.96); }
+    .btn.glow { animation: pulse 2.2s ease-in-out infinite; }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255,63,164,.55), 0 10px 30px rgba(255,63,164,.45); }
+      70%  { box-shadow: 0 0 0 18px rgba(255,63,164,0), 0 10px 30px rgba(255,63,164,.45); }
+      100% { box-shadow: 0 0 0 0 rgba(255,63,164,0), 0 10px 30px rgba(255,63,164,.45); }
+    }
+    .btn.ghost {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      box-shadow: none;
+    }
+    .btn:disabled { opacity: .35; cursor: default; }
+    .btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+    .hidden-soft { opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .6s, transform .6s; }
+    .show-soft { opacity: 1; transform: none; pointer-events: auto; }
+
+    /* ---------- Step 1: Landing ---------- */
+    .badge-ring {
+      position: relative;
+      width: 150px; height: 150px;
+      margin: 4px auto 18px;
+      display: grid; place-items: center;
+    }
+    .badge-ring::before {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--pink), var(--magenta), #7c4dff, var(--pink));
+      animation: spin 6s linear infinite;
+      filter: blur(.5px);
+    }
+    .badge-ring::after {
+      content: "";
+      position: absolute; inset: 5px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #3a1466, #150a30);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .badge-inner { position: relative; z-index: 1; line-height: 1; }
+    .badge-inner .num {
+      font-family: var(--font-latin);
+      font-weight: 600;
+      font-size: 54px;
+      background: linear-gradient(180deg, #fff, var(--rose));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .badge-inner .lbl { font-size: 11px; letter-spacing: .25em; color: var(--muted); margin-top: 4px; }
+
+    .landing-name { font-size: 64px; line-height: 1.1; margin: 2px 0 6px; }
+    .landing-sub {
+      display: inline-flex; gap: 8px; align-items: center;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      margin-bottom: 18px;
+    }
+    .landing-text { font-size: 15px; color: var(--muted); margin-bottom: 26px; max-width: 330px; }
+
+    /* ---------- Step 2: Cake ---------- */
+    .cake-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .cake-hint { font-size: 14px; color: var(--muted); min-height: 56px; margin-bottom: 8px; transition: opacity .4s; }
+
+    .cake-wrap {
+      position: relative;
+      width: 240px; height: 250px;
+      margin: 10px auto 22px;
+    }
+    .cake-glow {
+      position: absolute;
+      left: 50%; top: 10px;
+      width: 220px; height: 220px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,190,90,.55), rgba(255,63,164,.15) 45%, transparent 70%);
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      pointer-events: none;
+    }
+    .cake-wrap.lit .cake-glow { opacity: 1; animation: glowPulse 2.4s ease-in-out infinite; }
+    @keyframes glowPulse { 0%,100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.08); } }
+
+    .plate {
+      position: absolute; bottom: 0; left: 50%;
+      width: 230px; height: 22px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: linear-gradient(180deg, #f3e6ff, #b9a2d8);
+      box-shadow: 0 10px 25px rgba(0,0,0,.4);
+    }
+    .layer {
+      position: absolute; left: 50%;
+      transform: translateX(-50%);
+      border-radius: 14px 14px 18px 18px;
+    }
+    .layer.bottom {
+      bottom: 12px; width: 200px; height: 70px;
+      background: linear-gradient(180deg, #ff8cc6, #e2558f);
+      box-shadow: inset 0 -10px 0 rgba(0,0,0,.08);
+    }
+    .layer.top {
+      bottom: 78px; width: 156px; height: 56px;
+      background: linear-gradient(180deg, #ffd0e8, #ff94c6);
+      box-shadow: inset 0 -8px 0 rgba(0,0,0,.06);
+    }
+    .icing {
+      position: absolute; top: -4px; left: 0; right: 0; height: 22px;
+      border-radius: 14px 14px 0 0;
+      background:
+        radial-gradient(circle at 10px 18px, #fff 9px, transparent 10px) 0 0 / 22px 26px repeat-x,
+        linear-gradient(#fff, #fff) 0 0 / 100% 12px no-repeat;
+    }
+    .sprinkle { position: absolute; width: 4px; height: 10px; border-radius: 3px; }
+    .layer-text {
+      position: absolute; left: 0; right: 0; bottom: 12px;
+      font-family: var(--font-script); font-size: 22px; color: #fff;
+      text-shadow: 0 2px 6px rgba(150, 20, 80, .5);
+    }
+
+    .candle {
+      position: absolute; left: 50%;
+      bottom: 132px;
+      width: 16px; height: 62px;
+      transform: translateX(-50%);
+      border-radius: 5px 5px 3px 3px;
+      background: repeating-linear-gradient(135deg, #fff 0 7px, #ff5fae 7px 14px);
+      box-shadow: inset -3px 0 0 rgba(0,0,0,.08);
+    }
+    .wick {
+      position: absolute; left: 50%; top: -9px;
+      width: 2px; height: 10px; background: #3b2a2a;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    .flame {
+      position: absolute; left: 50%; top: -46px;
+      width: 22px; height: 40px;
+      transform-origin: 50% 90%;
+      transform: translateX(-50%) scale(0);
+      opacity: 0;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      background: radial-gradient(ellipse at 50% 75%, #fff 0%, #fff7c2 18%, #ffcf4d 40%, #ff7a1a 68%, rgba(255,60,0,0) 75%);
+      filter: drop-shadow(0 0 10px #ffb347) drop-shadow(0 0 24px rgba(255,120,40,.7));
+      transition: transform .6s cubic-bezier(.3,1.6,.5,1), opacity .4s;
+    }
+    .cake-wrap.lit .flame {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      animation: flicker 1.6s ease-in-out infinite .6s;
+    }
+    @keyframes flicker {
+      0%   { transform: translateX(-50%) scale(1, 1) rotate(-1deg); }
+      20%  { transform: translateX(-52%) scale(.94, 1.06) rotate(2deg); }
+      40%  { transform: translateX(-48%) scale(1.04, .96) rotate(-2deg); }
+      60%  { transform: translateX(-51%) scale(.97, 1.08) rotate(1deg); }
+      80%  { transform: translateX(-49%) scale(1.03, .98) rotate(-1.5deg); }
+      100% { transform: translateX(-50%) scale(1, 1) rotate(-1deg); }
+    }
+    .spark {
+      position: absolute; width: 5px; height: 5px; border-radius: 50%;
+      background: #ffd36e; box-shadow: 0 0 8px #ffb347;
+      pointer-events: none;
+      animation: sparkFly .9s ease-out forwards;
+    }
+    @keyframes sparkFly {
+      from { opacity: 1; transform: translate(0,0) scale(1); }
+      to   { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.3); }
+    }
+
+    .cake-actions { display: flex; flex-direction: column; gap: 12px; align-items: center; min-height: 112px; }
+
+    /* ---------- Step 3: Letters ---------- */
+    .letter {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .letter-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .letter-head .eyebrow { margin: 0; }
+    .page-count { font-size: 12px; color: var(--muted); }
+
+    .letter-viewport {
+      position: relative;
+      flex: 1;
+      min-height: 470px;
+    }
+    .letter-page {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      border-radius: 22px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid var(--glass-border);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(40px) rotateY(-8deg);
+      transition: opacity .55s ease, transform .55s cubic-bezier(.2,.8,.2,1);
+      pointer-events: none;
+    }
+    .letter-page.prev { transform: translateX(-40px) rotateY(8deg); }
+    .letter-page.current { opacity: 1; transform: none; pointer-events: auto; }
+
+    .photo {
+      position: relative;
+      background: linear-gradient(135deg, #3b1670, #7a1f6e 60%, #b8327f);
+      overflow: hidden;
+    }
+    .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo.noimg img { display: none; }
+    .photo.noimg::after {
+      content: "💖\A" attr(data-name);
+      white-space: pre;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      font-size: 13px; color: rgba(255,255,255,.75); line-height: 2.2;
+      font-family: var(--font-latin);
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.18), transparent 40%),
+        radial-gradient(circle at 75% 80%, rgba(255,63,164,.35), transparent 50%);
+    }
+    .letter-page .photo { height: 190px; flex-shrink: 0; }
+    .letter-page .photo::before {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 60px; z-index: 1;
+      background: linear-gradient(transparent, rgba(20, 8, 45, .85));
+    }
+    .letter-body { padding: 14px 18px 18px; text-align: left; overflow-y: auto; flex: 1; }
+    .letter-body h3 { font-family: var(--font-my); font-size: 18px; line-height: 1.8; margin-bottom: 6px; color: #ffd6ec; }
+    .letter-body p { font-size: 14.5px; color: rgba(255, 240, 250, .9); }
+
+    .letter-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 16px; }
+    .letter-nav .btn { padding: 11px 18px; font-size: 14px; min-width: 104px; }
+    .dots { display: flex; gap: 7px; }
+    .dots span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.25); transition: all .3s; }
+    .dots span.on { background: var(--pink); box-shadow: 0 0 8px var(--pink); width: 18px; border-radius: 6px; }
+
+    /* ---------- Step 4: Countdown ---------- */
+    .count-label { font-size: 15px; color: var(--muted); margin-bottom: 22px; }
+    .count-ring {
+      position: relative;
+      width: 200px; height: 200px;
+      display: grid; place-items: center;
+    }
+    .count-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .count-ring circle { fill: none; stroke-width: 6; }
+    .count-ring .track { stroke: rgba(255,255,255,.1); }
+    .count-ring .bar {
+      stroke: url(#ringGrad);
+      stroke-linecap: round;
+      stroke-dasharray: 565.5;
+      stroke-dashoffset: 565.5;
+      filter: drop-shadow(0 0 6px var(--pink));
+    }
+    .count-ring .bar.run { animation: ringFill 1s linear forwards; }
+    @keyframes ringFill { to { stroke-dashoffset: 0; } }
+    .count-num {
+      font-family: var(--font-latin);
+      font-size: 96px; font-weight: 600;
+      background: linear-gradient(180deg, #fff, var(--pink));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      filter: drop-shadow(0 0 20px rgba(255,63,164,.7));
+    }
+    .count-num.pop { animation: pop 1s cubic-bezier(.2,.8,.2,1); }
+    @keyframes pop {
+      0%   { transform: scale(2.2); opacity: 0; filter: blur(8px) drop-shadow(0 0 20px rgba(255,63,164,.7)); }
+      30%  { transform: scale(1); opacity: 1; filter: blur(0) drop-shadow(0 0 20px rgba(255,63,164,.7)); }
+      85%  { transform: scale(.92); opacity: 1; }
+      100% { transform: scale(.6); opacity: 0; }
+    }
+
+    /* ---------- Step 5: Gallery ---------- */
+    .gallery { width: 100%; flex: 1; display: flex; flex-direction: column; }
+    .gallery-head { margin-bottom: 14px; }
+    .gallery-head h2 { font-size: 34px; line-height: 1.2; }
+    .gallery-head .my { font-size: 13px; color: var(--muted); }
+
+    .stack {
+      position: relative;
+      flex: 1;
+      min-height: 420px;
+      perspective: 1200px;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .g-card {
+      position: absolute;
+      left: 6%; right: 6%; top: 0; bottom: 30px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #1c0d3a;
+      border: 1px solid rgba(255,255,255,.2);
+      box-shadow: 0 20px 50px rgba(0,0,0,.5);
+      transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s ease, filter .6s;
+      will-change: transform, opacity;
+    }
+    .g-card .photo { position: absolute; inset: 0; }
+    .g-card .cap {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 50px 16px 16px;
+      background: linear-gradient(transparent, rgba(15, 5, 35, .92) 55%);
+      text-align: left;
+      z-index: 2;
+    }
+    .g-card .cap .n { font-size: 11px; letter-spacing: .2em; color: var(--rose); }
+    .g-card .cap .t { font-family: var(--font-my); font-size: 15px; line-height: 1.8; margin-top: 2px; }
+
+    .gallery-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 8px; }
+    .round {
+      width: 52px; height: 52px; padding: 0;
+      border-radius: 50%;
+      font-size: 20px; font-family: var(--font-latin);
+      display: grid; place-items: center;
+    }
+    .g-counter { font-size: 14px; color: var(--muted); min-width: 64px; }
+    .g-counter b { color: #fff; font-size: 18px; }
+    .swipe-hint { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+    /* ---------- Finale overlay ---------- */
+    .finale {
+      position: absolute; inset: 0; z-index: 20;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 28px 24px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 30%, rgba(90, 20, 110, .92), rgba(12, 5, 30, .97));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0; visibility: hidden;
+      transition: opacity .8s ease, visibility 0s linear .8s;
+    }
+    .finale.show { opacity: 1; visibility: visible; transition: opacity .8s ease; }
+    .finale .big-heart { font-size: 64px; animation: beat 1.2s ease-in-out infinite; filter: drop-shadow(0 0 20px var(--pink)); }
+    @keyframes beat { 0%,100% { transform: scale(1); } 15% { transform: scale(1.18); } 30% { transform: scale(1); } 45% { transform: scale(1.12); } }
+    .finale h2 { font-size: 40px; line-height: 1.2; margin: 12px 0 4px; }
+    .finale .sub { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); margin-bottom: 16px; }
+    .finale p { font-size: 15px; color: rgba(255,240,250,.92); margin-bottom: 24px; max-width: 340px; }
+    .finale .row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+    /* ---------- Confetti ---------- */
+    .confetti {
+      position: fixed; top: -12px;
+      width: 8px; height: 14px;
+      z-index: 50; pointer-events: none;
+      border-radius: 2px;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translate(var(--cx, 0), 105vh) rotate(var(--cr, 720deg)); opacity: .7; }
+    }
+
+    @media (max-height: 700px) {
+      .badge-ring { width: 120px; height: 120px; }
+      .badge-inner .num { font-size: 42px; }
+      .landing-name { font-size: 52px; }
+      .letter-viewport { min-height: 420px; }
+      .letter-page .photo { height: 160px; }
+      .stack { min-height: 360px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .2s !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <div class="stars" id="stars"></div>
+  <div class="hearts" id="hearts"></div>
+
+  <main class="app" role="main">
+    <div class="topbar">
+      <span>For mee ♡</span>
+      <div class="progress" id="progress" aria-hidden="true">
+        <span class="on"></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="screens">
+
+      <!-- STEP 1: Landing -->
+      <section class="screen active" id="s-landing" aria-label="Welcome">
+        <div class="badge-ring">
+          <div class="badge-inner">
+            <div class="num">25</div>
+            <div class="lbl">BIRTHDAY</div>
+          </div>
+        </div>
+        <div class="eyebrow">Happy Birthday</div>
+        <h1 class="script landing-name">mee</h1>
+        <div class="landing-sub my">🎂 ၂၅ နှစ်ပြည့် <span style="opacity:.5">•</span> 💞 ၇ နှစ်ပြည့်</div>
+        <p class="landing-text my">
+          ချစ်ရတဲ့ mee ရေ... ဒီနေ့က mee ရဲ့ အသက် ၂၅ နှစ်ပြည့် မွေးနေ့လေးပါ။
+          ကိုယ်တို့နှစ်ယောက် လက်တွဲလာခဲ့တာ ၇ နှစ်ပြည့်တဲ့ အမှတ်တရလေးလည်း ဖြစ်တယ်။
+          mee အတွက် အံ့သြစရာလေး တစ်ခု ပြင်ထားတယ်နော်... 🤍
+        </p>
+        <button class="btn glow" id="btnStart">အံ့သြစရာလေး ဖွင့်ကြည့်မယ် 💖</button>
+      </section>
+
+      <!-- STEP 2: Candle -->
+      <section class="screen" id="s-cake" aria-label="Light the candle">
+        <div class="eyebrow">Make a wish</div>
+        <h2 class="cake-title my">ဖယောင်းတိုင်လေး ထွန်းပေးပါဦး mee 🕯️</h2>
+        <p class="cake-hint my" id="cakeHint">အောက်က မီးခြစ်လေးကို နှိပ်ပြီး ၂၅ နှစ်ပြည့် ဖယောင်းတိုင်လေးကို ထွန်းလိုက်ပါ...</p>
+
+        <div class="cake-wrap" id="cake">
+          <div class="cake-glow"></div>
+          <div class="plate"></div>
+          <div class="layer bottom">
+            <div class="icing"></div>
+            <div class="layer-text">mee</div>
+          </div>
+          <div class="layer top">
+            <div class="icing"></div>
+            <div class="layer-text" style="font-size:18px;bottom:8px;">25 ♡ 7</div>
+          </div>
+          <div class="candle">
+            <div class="wick"></div>
+            <div class="flame"></div>
+          </div>
+        </div>
+
+        <div class="cake-actions">
+          <button class="btn glow" id="btnLight">🔥 မီးညှိမယ်</button>
+          <button class="btn hidden-soft" id="btnAfterCake">ဆုတောင်းပြီးပြီ ✨ ဆက်သွားမယ်</button>
+        </div>
+      </section>
+
+      <!-- STEP 3: Letters -->
+      <section class="screen" id="s-letter" aria-label="Letters for mee">
+        <div class="letter">
+          <div class="letter-head">
+            <div class="eyebrow">Letters for mee</div>
+            <div class="page-count" id="pageCount">1 / 5</div>
+          </div>
+          <div class="letter-viewport" id="letterViewport"></div>
+          <div class="letter-nav">
+            <button class="btn ghost my" id="btnPrev">← နောက်သို့</button>
+            <div class="dots" id="letterDots"></div>
+            <button class="btn my" id="btnNext">ရှေ့သို့ →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 4: Countdown -->
+      <section class="screen" id="s-count" aria-label="Countdown">
+        <p class="count-label my">mee အတွက် နောက်ဆုံး အံ့သြစရာလေး... 🎁</p>
+        <div class="count-ring">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ff3fa4" />
+                <stop offset="100%" stop-color="#e040fb" />
+              </linearGradient>
+            </defs>
+            <circle class="track" cx="100" cy="100" r="90" />
+            <circle class="bar" id="ringBar" cx="100" cy="100" r="90" />
+          </svg>
+          <div class="count-num" id="countNum">3</div>
+        </div>
+      </section>
+
+      <!-- STEP 5: Gallery -->
+      <section class="screen" id="s-gallery" aria-label="Our memories">
+        <div class="gallery">
+          <div class="gallery-head">
+            <div class="eyebrow">7 Years of Us</div>
+            <h2 class="script">Our Memories</h2>
+            <div class="my">ကိုယ်တို့ရဲ့ အမှတ်တရလေးတွေ 💞</div>
+          </div>
+          <div class="stack" id="stack"></div>
+          <div class="gallery-nav">
+            <button class="btn ghost round" id="gPrev" aria-label="Previous photo">‹</button>
+            <div class="g-counter" id="gCounter"><b>1</b> / 15</div>
+            <button class="btn round" id="gNext" aria-label="Next photo">›</button>
+          </div>
+          <div class="swipe-hint my">👈 ဘယ်ညာ ပွတ်ဆွဲပြီး ကြည့်လို့ရတယ်နော် 👉</div>
+        </div>
+
+        <div class="finale" id="finale">
+          <div class="big-heart">💖</div>
+          <h2 class="script">Forever, mee</h2>
+          <div class="sub">Happy 25th Birthday &amp; 7 Years</div>
+          <p class="my">
+            mee ရေ... ၇ နှစ်တာလုံး ကိုယ့်ဘေးမှာ ရှိနေပေးခဲ့လို့ ကျေးဇူးအများကြီး တင်ပါတယ်။
+            ဒီ ၂၅ နှစ်ပြည့် မွေးနေ့ကစပြီး ဘယ်တော့မှ မခွဲဘဲ သက်ဆုံးတိုင် အတူတူ ရှိနေကြရအောင်နော်။
+            ချစ်တယ် mee... အမြဲတမ်း၊ ထာဝရ။ 💍
+          </p>
+          <div class="row">
+            <button class="btn ghost my" id="btnBackGallery">ပုံတွေ ပြန်ကြည့်မယ်</button>
+            <button class="btn glow my" id="btnReplay">အစကနေ ပြန်စမယ် ↺</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+  (function () {
+    "use strict";
+
+    /* ================= Content ================= */
+    var LETTERS = [
+      {
+        title: "Happy 25th Birthday, mee 🎂",
+        text: "အသက် ၂၅ နှစ်ပြည့် မွေးနေ့လေးမှာ mee ကို အရင်ဆုံး ပြောချင်တာက... ဒီကမ္ဘာပေါ်ကို mee မွေးဖွားလာခဲ့တဲ့အတွက် ကျေးဇူးတင်ပါတယ်။ mee ရဲ့ အပြုံးလေးတွေက ကိုယ့်ဘဝရဲ့ အလင်းရောင်ပါ။ ဒီနှစ်ကစပြီး mee ဘဝမှာ ပျော်ရွှင်မှုတွေ၊ ကျန်းမာမှုတွေ၊ အောင်မြင်မှုတွေ အပြည့်ရှိပါစေလို့ အသည်းနှလုံးအပြည့်နဲ့ ဆုတောင်းပေးပါတယ်။"
+      },
+      {
+        title: "၇ နှစ်တာ ခရီးလမ်းလေး 💞",
+        text: "၇ နှစ်ဆိုတာ ရက်ပေါင်း ၂၅၅၀ ကျော်ပါ။ အဲ့ဒီရက်တိုင်းမှာ mee က ကိုယ့်ဘေးမှာ ရှိနေခဲ့တယ်။ ပျော်ခဲ့တဲ့နေ့တွေ၊ ငိုခဲ့ရတဲ့နေ့တွေ၊ စိတ်ဆိုးခဲ့ကြတဲ့နေ့တွေ... အားလုံးကို ဖြတ်ကျော်ပြီး ဒီနေ့ထိ လက်ချင်းမဖြုတ်ဘဲ အတူရှိနေခဲ့ကြတာ ကိုယ့်ဘဝရဲ့ အကြီးမားဆုံး ကံကောင်းခြင်းပါ mee။"
+      },
+      {
+        title: "ကျေးဇူးတင်ပါတယ် mee 🤍",
+        text: "ကိုယ်မပြည့်စုံခဲ့တဲ့ အချိန်တွေ၊ ကိုယ်မှားခဲ့တဲ့ အချိန်တွေမှာတောင် mee က ကိုယ့်ကို နားလည်ပေးခဲ့တယ်၊ စောင့်ပေးခဲ့တယ်၊ ချစ်ပေးခဲ့တယ်။ ၇ နှစ်လုံးလုံး ကိုယ့်ဘေးမှာ မယိမ်းမယိုင် ရပ်တည်ပေးခဲ့တဲ့ mee ကို စကားလုံးတွေနဲ့ ဖော်ပြလို့ မကုန်နိုင်လောက်အောင် ကျေးဇူးတင်ပါတယ်။"
+      },
+      {
+        title: "mee က ကိုယ့်ရဲ့ အိမ်ပါ 🏡",
+        text: "ဘယ်လောက်ပဲ ပင်ပန်းပင်ပန်း mee ရဲ့ အသံလေး ကြားလိုက်ရရင် ကိုယ် အားပြည့်သွားတယ်။ mee ဘေးမှာ ရှိနေရတာက ကိုယ့်အတွက် အေးချမ်းတဲ့ အိမ်လေးတစ်လုံးလိုပါပဲ။ ဘဝရဲ့ ဘယ်နေရာကိုပဲ ရောက်ရောက်၊ ကိုယ် ပြန်လာချင်တဲ့ တစ်နေရာတည်းက mee ဆီကိုပါ။"
+      },
+      {
+        title: "သက်ဆုံးတိုင် အတူတူ ♾️",
+        text: "ကိုယ့်ရဲ့ အကြီးမားဆုံး ဆုတောင်းက ဘယ်တော့မှ မခွဲဘဲ သက်ဆုံးတိုင် mee နဲ့ အတူတူ ရှိနေချင်တာပါ။ နောက်ထပ် ၇ နှစ်၊ ၁၇ နှစ်၊ ၇၀ နှစ်... ဆံပင်တွေ ဖြူသွားတဲ့အထိ mee ရဲ့ လက်လေးကို ဆုပ်ကိုင်ထားချင်တယ်။ ချစ်တယ် mee... အမြဲတမ်း ချစ်နေမှာပါ။ 💖"
+      }
+    ];
+
+    var CAPTIONS = [
+      "ကိုယ်တို့ရဲ့ အစလေး... ✨",
+      "mee ရဲ့ အပြုံးလေးက ကိုယ့်ကမ္ဘာပါ 😊",
+      "အတူတူ ဖြတ်သန်းခဲ့တဲ့ နေ့ရက်လေးတွေ 🌸",
+      "ဒီပုံလေးကို ကြည့်တိုင်း ပြုံးမိတယ် 💕",
+      "mee ဘေးမှာဆို အရာအားလုံး လှပနေတယ် 🌙",
+      "ခရီးတိုင်းမှာ mee ပါမှ ပြည့်စုံတယ် 🚗",
+      "အတူတူ ရယ်မောခဲ့ကြတဲ့ အမှတ်တရလေးတွေ 😆",
+      "စိတ်ဆိုးလည်း ပြန်ချော့ရတာကို ပျော်တယ် 🥺",
+      "၇ နှစ်တာ အချိန်တွေ မြန်လိုက်တာ ⏳",
+      "mee က ကိုယ့်ရဲ့ အကောင်းဆုံး သူငယ်ချင်းလည်း ဖြစ်တယ် 🤝",
+      "ကိုယ့်ဘဝရဲ့ အလှဆုံး စာမျက်နှာလေးတွေ 📖",
+      "ဘယ်လောက်ကြာကြာ mee တစ်ယောက်ကိုပဲ ချစ်နေမှာ 💞",
+      "အသက် ၂၅ မှာ ပိုလှလာတဲ့ ကိုယ့်ရဲ့ mee 👑",
+      "နောက်ထပ် နှစ်ပေါင်းများစွာ အတူတူ 🌹",
+      "ဘယ်တော့မှ မခွဲဘဲ သက်ဆုံးတိုင်... ♾️💍"
+    ];
+
+    /* ================= Helpers ================= */
+    var $ = function (id) { return document.getElementById(id); };
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function track(name, params) {
+      try { if (typeof window.trackEvent === "function") window.trackEvent(name, params || {}); } catch (e) {}
+    }
+
+    function photoEl(n) {
+      var wrap = document.createElement("div");
+      wrap.className = "photo";
+      wrap.setAttribute("data-name", "photo-" + n + ".jpg");
+      var img = document.createElement("img");
+      img.alt = "mee memory " + n;
+      img.decoding = "async";
+      img.draggable = false;
+      img.onerror = function () { wrap.classList.add("noimg"); };
+      img.src = "photo-" + n + ".jpg";
+      wrap.appendChild(img);
+      return wrap;
+    }
+
+    /* ================= Ambient ================= */
+    (function makeStars() {
+      var box = $("stars");
+      for (var i = 0; i < 50; i++) {
+        var s = document.createElement("div");
+        s.className = "star";
+        s.style.left = Math.random() * 100 + "%";
+        s.style.top = Math.random() * 100 + "%";
+        s.style.animationDelay = (Math.random() * 3).toFixed(2) + "s";
+        s.style.opacity = Math.random().toFixed(2);
+        box.appendChild(s);
+      }
+    })();
+
+    var heartsBox = $("hearts");
+    var HEART_GLYPHS = ["♥", "❤", "💗", "💕", "♡"];
+    function spawnHeart() {
+      if (document.hidden || heartsBox.childElementCount > 18) return;
+      var h = document.createElement("span");
+      h.className = "float-heart";
+      h.textContent = HEART_GLYPHS[Math.floor(Math.random() * HEART_GLYPHS.length)];
+      h.style.left = Math.random() * 100 + "%";
+      h.style.fontSize = (12 + Math.random() * 18) + "px";
+      var dur = 8 + Math.random() * 7;
+      h.style.animationDuration = dur + "s";
+      h.style.setProperty("--sway", (Math.random() * 120 - 60) + "px");
+      heartsBox.appendChild(h);
+      setTimeout(function () { h.remove(); }, dur * 1000 + 100);
+    }
+    if (!reduceMotion) setInterval(spawnHeart, 900);
+
+    var CONFETTI_COLORS = ["#ff3fa4", "#e040fb", "#ffd36e", "#ff7eb6", "#8c6bff", "#ffffff"];
+    function confetti(count) {
+      if (reduceMotion) return;
+      for (var i = 0; i < count; i++) {
+        var c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
+        var dur = 2.6 + Math.random() * 2.4;
+        c.style.animationDuration = dur + "s";
+        c.style.animationDelay = (Math.random() * 0.6) + "s";
+        c.style.setProperty("--cx", (Math.random() * 160 - 80) + "px");
+        c.style.setProperty("--cr", (Math.random() * 900 + 180) + "deg");
+        if (Math.random() > .5) { c.style.width = "10px"; c.style.height = "10px"; c.style.borderRadius = "50%"; }
+        document.body.appendChild(c);
+        (function (el, ms) { setTimeout(function () { el.remove(); }, ms); })(c, (dur + 0.8) * 1000);
+      }
+    }
+
+    /* ================= Navigation ================= */
+    var ORDER = ["s-landing", "s-cake", "s-letter", "s-count", "s-gallery"];
+    var progressBars = $("progress").children;
+
+    function goTo(id) {
+      ORDER.forEach(function (sid) { $(sid).classList.toggle("active", sid === id); });
+      var idx = ORDER.indexOf(id);
+      for (var i = 0; i < progressBars.length; i++) progressBars[i].classList.toggle("on", i <= idx);
+      track("step_view", { step: idx + 1, step_name: id });
+    }
+
+    /* ================= Step 1 ================= */
+    $("btnStart").addEventListener("click", function () { goTo("s-cake"); });
+
+    /* ================= Step 2 ================= */
+    var cake = $("cake");
+    var btnLight = $("btnLight");
+    var btnAfterCake = $("btnAfterCake");
+
+    function sparks() {
+      var candle = cake.querySelector(".candle");
+      for (var i = 0; i < 14; i++) {
+        var s = document.createElement("div");
+        s.className = "spark";
+        s.style.left = (candle.offsetLeft) + "px";
+        s.style.top = (candle.offsetTop - 30) + "px";
+        var a = Math.random() * Math.PI * 2, d = 30 + Math.random() * 50;
+        s.style.setProperty("--dx", Math.cos(a) * d + "px");
+        s.style.setProperty("--dy", Math.sin(a) * d - 20 + "px");
+        cake.appendChild(s);
+        (function (el) { setTimeout(function () { el.remove(); }, 1000); })(s);
+      }
+    }
+
+    btnLight.addEventListener("click", function () {
+      if (cake.classList.contains("lit")) return;
+      cake.classList.add("lit");
+      sparks();
+      confetti(40);
+      btnLight.disabled = true;
+      btnLight.classList.remove("glow");
+      btnLight.textContent = "🕯️ မီးလေး ထွန်းပြီးပါပြီ";
+      $("cakeHint").textContent = "မျက်လုံးလေး မှိတ်ပြီး ဆုတောင်းလေး တစ်ခု ပြုလိုက်နော် mee... ✨ mee ရဲ့ ဆုတောင်းတိုင်း ပြည့်ပါစေ။";
+      setTimeout(function () {
+        btnAfterCake.classList.remove("hidden-soft");
+        btnAfterCake.classList.add("show-soft", "glow");
+      }, 1200);
+      track("candle_lit");
+    });
+
+    btnAfterCake.addEventListener("click", function () {
+      if (!btnAfterCake.classList.contains("show-soft")) return;
+      goTo("s-letter");
+    });
+
+    /* ================= Step 3 ================= */
+    var viewport = $("letterViewport");
+    var dotsBox = $("letterDots");
+    var btnPrev = $("btnPrev");
+    var btnNext = $("btnNext");
+    var letterIdx = 0;
+    var pages = [];
+
+    LETTERS.forEach(function (l, i) {
+      var page = document.createElement("article");
+      page.className = "letter-page";
+      page.appendChild(photoEl(i + 1));
+      var body = document.createElement("div");
+      body.className = "letter-body";
+      var h = document.createElement("h3");
+      h.textContent = l.title;
+      var p = document.createElement("p");
+      p.className = "my";
+      p.textContent = l.text;
+      body.appendChild(h);
+      body.appendChild(p);
+      page.appendChild(body);
+      viewport.appendChild(page);
+      pages.push(page);
+      dotsBox.appendChild(document.createElement("span"));
+    });
+
+    function renderLetter() {
+      pages.forEach(function (pg, i) {
+        pg.classList.toggle("current", i === letterIdx);
+        pg.classList.toggle("prev", i < letterIdx);
+        pg.setAttribute("aria-hidden", i === letterIdx ? "false" : "true");
+      });
+      Array.prototype.forEach.call(dotsBox.children, function (d, i) { d.classList.toggle("on", i === letterIdx); });
+      $("pageCount").textContent = (letterIdx + 1) + " / " + LETTERS.length;
+      btnPrev.disabled = letterIdx === 0;
+      btnNext.textContent = letterIdx === LETTERS.length - 1 ? "ဆက်သွားမယ် 💝" : "ရှေ့သို့ →";
+      var body = pages[letterIdx].querySelector(".letter-body");
+      if (body) body.scrollTop = 0;
+    }
+    renderLetter();
+
+    btnPrev.addEventListener("click", function () {
+      if (letterIdx > 0) { letterIdx--; renderLetter(); }
+    });
+    btnNext.addEventListener("click", function () {
+      if (letterIdx < LETTERS.length - 1) { letterIdx++; renderLetter(); }
+      else startCountdown();
+    });
+    addSwipe(viewport, function () { btnNext.click(); }, function () { btnPrev.click(); }, function () {
+      return letterIdx < LETTERS.length - 1; // don't trigger countdown by swipe
+    });
+
+    /* ================= Step 4 ================= */
+    var counting = false;
+    function startCountdown() {
+      if (counting) return;
+      counting = true;
+      goTo("s-count");
+      var n = 3;
+      var num = $("countNum");
+      var bar = $("ringBar");
+      function tick() {
+        if (n === 0) {
+          counting = false;
+          goTo("s-gallery");
+          confetti(80);
+          return;
+        }
+        num.textContent = n;
+        num.classList.remove("pop");
+        bar.classList.remove("run");
+        void num.offsetWidth; // restart animations
+        num.classList.add("pop");
+        bar.classList.add("run");
+        n--;
+        setTimeout(tick, 1000);
+      }
+      setTimeout(tick, 600);
+    }
+
+    /* ================= Step 5 ================= */
+    var stack = $("stack");
+    var gIdx = 0;
+    var cards = [];
+    var TOTAL = CAPTIONS.length;
+
+    CAPTIONS.forEach(function (text, i) {
+      var card = document.createElement("div");
+      card.className = "g-card";
+      card.appendChild(photoEl(i + 1));
+      var cap = document.createElement("div");
+      cap.className = "cap";
+      var nEl = document.createElement("div");
+      nEl.className = "n";
+      nEl.textContent = "MEMORY " + String(i + 1).padStart(2, "0");
+      var tEl = document.createElement("div");
+      tEl.className = "t";
+      tEl.textContent = text;
+      cap.appendChild(nEl);
+      cap.appendChild(tEl);
+      card.appendChild(cap);
+      stack.appendChild(card);
+      cards.push(card);
+    });
+
+    function renderGallery() {
+      cards.forEach(function (c, i) {
+        var off = i - gIdx;
+        var t, o, z, f = "none";
+        if (off < 0) {
+          t = "translateX(-130%) rotate(-14deg)";
+          o = 0; z = 1;
+        } else if (off === 0) {
+          t = "translateY(0) scale(1)";
+          o = 1; z = 100;
+        } else if (off <= 2) {
+          t = "translateY(" + (off * 16) + "px) scale(" + (1 - off * 0.06) + ") rotate(" + (off % 2 ? 3 : -3) + "deg)";
+          o = 1 - off * 0.25; z = 100 - off;
+          f = "brightness(" + (1 - off * 0.2) + ")";
+        } else {
+          t = "translateY(32px) scale(.88)";
+          o = 0; z = 100 - off;
+        }
+        c.style.transform = t;
+        c.style.opacity = o;
+        c.style.zIndex = z;
+        c.style.filter = f;
+        c.style.pointerEvents = off === 0 ? "auto" : "none";
+        c.setAttribute("aria-hidden", off === 0 ? "false" : "true");
+      });
+      $("gCounter").innerHTML = "<b>" + (gIdx + 1) + "</b> / " + TOTAL;
+      $("gPrev").disabled = gIdx === 0;
+      $("gNext").textContent = gIdx === TOTAL - 1 ? "♥" : "›";
+      $("gNext").setAttribute("aria-label", gIdx === TOTAL - 1 ? "Final message" : "Next photo");
+    }
+    renderGallery();
+
+    function gNext() {
+      if (gIdx < TOTAL - 1) { gIdx++; renderGallery(); }
+      else showFinale();
+    }
+    function gPrev() {
+      if (gIdx > 0) { gIdx--; renderGallery(); }
+    }
+    $("gNext").addEventListener("click", gNext);
+    $("gPrev").addEventListener("click", gPrev);
+    addSwipe(stack, gNext, gPrev);
+
+    document.addEventListener("keydown", function (e) {
+      var active = document.querySelector(".screen.active");
+      if (!active) return;
+      if (active.id === "s-gallery" && !$("finale").classList.contains("show")) {
+        if (e.key === "ArrowRight") gNext();
+        if (e.key === "ArrowLeft") gPrev();
+      } else if (active.id === "s-letter") {
+        if (e.key === "ArrowRight") btnNext.click();
+        if (e.key === "ArrowLeft") btnPrev.click();
+      }
+    });
+
+    function showFinale() {
+      $("finale").classList.add("show");
+      confetti(120);
+      track("finale_view");
+    }
+    $("btnBackGallery").addEventListener("click", function () {
+      $("finale").classList.remove("show");
+      gIdx = 0;
+      renderGallery();
+    });
+    $("btnReplay").addEventListener("click", function () {
+      $("finale").classList.remove("show");
+      // reset everything
+      cake.classList.remove("lit");
+      btnLight.disabled = false;
+      btnLight.classList.add("glow");
+      btnLight.textContent = "🔥 မီးညှိမယ်";
+      $("cakeHint").textContent = "အောက်က မီးခြစ်လေးကို နှိပ်ပြီး ၂၅ နှစ်ပြည့် ဖယောင်းတိုင်လေးကို ထွန်းလိုက်ပါ...";
+      btnAfterCake.classList.remove("show-soft", "glow");
+      btnAfterCake.classList.add("hidden-soft");
+      letterIdx = 0; renderLetter();
+      gIdx = 0; renderGallery();
+      goTo("s-landing");
+    });
+
+    /* ================= Swipe helper ================= */
+    function addSwipe(el, onLeft, onRight, canLeft) {
+      var sx = 0, sy = 0, tracking = false;
+      el.addEventListener("touchstart", function (e) {
+        if (e.touches.length !== 1) return;
+        sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
+      }, { passive: true });
+      el.addEventListener("touchend", function (e) {
+        if (!tracking) return;
+        tracking = false;
+        var t = e.changedTouches[0];
+        var dx = t.clientX - sx, dy = t.clientY - sy;
+        if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+        if (dx < 0) { if (!canLeft || canLeft()) onLeft(); }
+        else onRight();
+      }, { passive: true });
+    }
+
+    track("step_view", { step: 1, step_name: "s-landing" });
+  })();
+  </script>
+
+  <!-- Firebase Analytics (optional – the page works even if this fails to load) -->
+  <script type="module">
+    try {
+      const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+      const { getAnalytics, isSupported, logEvent } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js");
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDNjpDRBz910dwvOJyHtAj9lQRU6_YD5dk",
+        authDomain: "third-hangout-461417-q5.firebaseapp.com",
+        projectId: "third-hangout-461417-q5",
+        storageBucket: "third-hangout-461417-q5.firebasestorage.app",
+        messagingSenderId: "258375195523",
+        appId: "1:258375195523:web:418a6055b215cc78ee34b6",
+        measurementId: "G-ZZQ8QCNH20"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      if (await isSupported()) {
+        const analytics = getAnalytics(app);
+        window.trackEvent = (name, params) => logEvent(analytics, name, params);
+        logEvent(analytics, "surprise_opened");
+      }
+    } catch (err) {
+      console.warn("Firebase analytics not loaded:", err);
+    }
+  </script>
+</body>
+</html>
